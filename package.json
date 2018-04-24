@@ -1,0 +1,16 @@
+{
+  "name": "CourseManager",
+  "version": "0.0.1",
+  "description": "",
+  "main": "app/main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "1.8.4"
+  },
+  "dependencies": {}
+}
