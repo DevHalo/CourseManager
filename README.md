@@ -20,4 +20,4 @@ Dev:
 Production:
 - I use electron-packager so **electron-packager .** in the repo directory will work.
 
-Currently tested on Windows 10. Untested on Mac or Linux.
+Currently tested on Windows 10. No plans for Mac or Linux yet.
