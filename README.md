@@ -6,18 +6,17 @@ Written using Electron as well as the following libraries:
 - [anime.js](https://github.com/juliangarnier/anime) (For animations and to make it look cool)
 - [vis.js](https://github.com/almende/vis) (For data visualization)
 
-### Planned release features:
+#### Planned release features:
 - Allow user to save their grades earned in a particular course, calculating GPA avg. etc
 - Courses included are for Bachelors of Computer Science (Honours incl.) as well as the specialized fields
 
-### Other features I plan on working on:
+#### Other features I plan on working on:
 - Scrapes the YorkU course website for updated courses (Might be moved to an AWS server instead)
 
-### Deployment
-Dev:
-- Run **npm start** in the repo directory.
+#### Deployment
 
-Production:
-- I use electron-packager so **electron-packager .** in the repo directory will work.
+~~~~
+npm run electron-build
+~~~~
 
 Currently tested on Windows 10. No plans for Mac or Linux yet.
