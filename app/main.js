@@ -14,7 +14,9 @@ function createWindow() {
   win = new BrowserWindow({
     width: 1366,
     height: 768,
-    frame: false
+    frame: false,
+    minHeight: 720,
+    minWidth: 1280
   })
 
   // and load the index.html of the app.
@@ -59,6 +61,5 @@ app.on('activate', () => {
 })
 
 app.on('exitProgram', (evt, arg) => {
-  console.log('bada bing bada boom')
   app.quit()
 })

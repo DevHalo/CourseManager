@@ -7,10 +7,12 @@
     "start": "electron ."
   },
   "keywords": [],
-  "author": "",
+  "author": "Mark Voong",
   "license": "ISC",
   "devDependencies": {
     "electron": "1.8.4"
   },
-  "dependencies": {}
+  "dependencies": {
+    "vis": "^4.21.0"
+  }
 }
