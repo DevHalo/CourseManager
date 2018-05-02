@@ -8,7 +8,6 @@ var line;
 var isLoading;
 var loadingPromise;
 
-window.onload = function () {
     loadingElement = document.getElementById('loading');
     //loading.style.display = 'none';
     var btns = anime({
@@ -33,7 +32,11 @@ window.onload = function () {
         easing: 'easeOutExpo',
         duration: 2000,
         autoplay: false,
-        loop: 10000
+        complete: function() {
+            if (isLoading) {
+                logoRotate.restart();
+            }
+        }
     });
 
     line = anime.timeline({
@@ -84,7 +87,6 @@ window.onload = function () {
     document.getElementById('minimizeBtn').addEventListener('click', function () {
         remote.getCurrentWindow().minimize();
     });
-};
 
 remote.getCurrentWindow().on('maximize', () => {
     maximized = 1;
@@ -137,12 +139,13 @@ function showLoading() {
 
 function hideLoading() {
     isLoading = false;
-    logoRotate.loop = 0;
+
     console.log('Loading Ended!');
 }
 
 function finishHideLoading() {
     var fadeOut = anime.timeline({
+        autoplay: false
     });
 
     fadeOut.add({
@@ -153,4 +156,7 @@ function finishHideLoading() {
         },
         duration: '500'
     });
+
+
+    fadeOut.play();
 }
