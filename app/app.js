@@ -72,6 +72,8 @@ line = anime.timeline({
     complete: function (anim) {
         if (isLoading) {
             logoRotate.restart();
+        } else {
+            loadingElement.style.display = 'block';
         }
     }
 })
@@ -140,6 +142,10 @@ function showLoading() {
     isLoading = true;
     // Reset animations
     line.restart();
+
+    if (line.reversed) {
+        line.reverse();
+    }
 }
 
 function hideLoading() {
@@ -159,8 +165,10 @@ function finishHideLoading() {
         easing: "linear",
         duration: '500',
         complete: function () {
-            line.play();
-            line.reverse();
+            line.restart();
+            if (!line.reversed) {
+                line.reverse();
+            }
         }
     });
     fadeOut.play();
