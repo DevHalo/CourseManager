@@ -6,11 +6,11 @@ Written using Electron as well as the following libraries:
 - anime.js (For animations and to make it look cool)
 - vis.js (For data visualization)
 
-###Planned release features:
+### Planned release features:
 - Allow user to save their grades earned in a particular course, calculating GPA avg. etc
 - Courses included are for Bachelors of Computer Science (Honours incl.) as well as the specialized fields
 
-###Other features I plan on working on:
+### Other features I plan on working on:
 - Scrapes the YorkU course website for updated courses (Might be moved to an AWS server instead)
 
 ### Deployment
