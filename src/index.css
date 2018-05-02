@@ -1,0 +1,172 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #343d46;
+    margin: 0px;
+}
+
+/* Nav */
+
+a,
+u {
+    text-decoration: none;
+    color: #1F242A;
+    transition: color 0.2s linear;
+}
+
+a:hover {
+    color: white;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.nav ul li:first-child a {
+    padding-left: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 2px black;
+}
+
+/* Nav */
+
+/* Loading Overlay */
+
+#loading:before {
+    content: '';
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+#loading {
+    position: fixed;
+    z-index: 999;
+    overflow: show;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 0;
+    display: none;
+}
+
+#loading svg {
+    top: calc(50% - 50px);
+    left: calc(50% - 50px);
+    position: absolute;
+}
+
+.loadingCircle {
+    transform-origin: center;
+}
+
+/* Loading Overlay */
+
+/* Content */
+
+.main-container {
+    height: 100%;
+}
+
+.main-container * {
+    height: 100%;
+}
+
+.sidebar {
+    width: 300px;
+    height: 100%;
+    float: left;
+    background-color: gray;
+}
+
+#graph-view {
+    margin-left: 300px;
+    width: calc(100% - 306px);
+    height: 100%;
+    border: solid white;
+    background-color: blue;
+}
+
+/* Content */
+
+/* Menu Bar */
+
+.topBar {
+    -webkit-app-region: drag;
+    height: 30px;
+    background-color: black;
+    width: 100%;
+}
+
+.title {
+    color: white;
+    text-align:center;
+    position: absolute;
+    top: 6px;
+}
+
+.windowBtns {
+    width: 90px;
+    float: right;
+    height: 100%;
+}
+
+.windowBtns div {
+    position: absolute;
+    -webkit-app-region: no-drag;
+    opacity: 0;
+    top: 6px;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    border-color: white;
+    transition: background-color 0.2s linear;
+}
+
+#minimizeBtn {
+    background-color: green;
+}
+
+#maximizeBtn {
+    background-color: orange;
+}
+
+#closeBtn {
+    background-color: red;
+}
+
+#minimizeBtn:hover {
+    background-color: white;
+}
+
+#maximizeBtn:hover {
+    background-color: white;
+}
+
+#closeBtn:hover {
+    background-color: white;
+}
+
+/* Menu Bar */
+
+/* Footer */
+.footer {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: black;
+    color: white;
+    text-align: right;
+}
+
+.footer * {
+    font-size: 12px;
+    font-style: italic;
+}
