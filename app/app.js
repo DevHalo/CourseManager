@@ -8,85 +8,90 @@ var line;
 var isLoading;
 var loadingPromise;
 
-    loadingElement = document.getElementById('loading');
-    //loading.style.display = 'none';
-    var btns = anime({
-        targets: '.windowBtns div',
-        translateX: {
-            value: function (el, i) {
-                return (i * -25);
-            },
-            duration: 500,
+loadingElement = document.getElementById('loading');
+//loading.style.display = 'none';
+var btns = anime({
+    targets: '.windowBtns div',
+    translateX: {
+        value: function (el, i) {
+            return (i * -25);
         },
-        right: {
-            value: '8px',
-            duration: 500,
-        },
-        opacity: 1,
-        easing: 'easeOutCubic'
-    })
+        duration: 500,
+    },
+    right: {
+        value: '8px',
+        duration: 500,
+    },
+    opacity: 1,
+    easing: 'easeOutCubic'
+})
 
-    logoRotate = anime({
-        targets: '.loadingCircle',
-        rotate: '1turn',
-        easing: 'easeOutExpo',
-        duration: 2000,
-        autoplay: false,
-        complete: function() {
-            if (isLoading) {
-                logoRotate.restart();
-            }
+logoRotate = anime({
+    targets: '.loadingCircle',
+    rotate: '1turn',
+    easing: 'easeOutExpo',
+    duration: 2000,
+    autoplay: false,
+    update: function () {
+        if (isLoading) {
+            console.log("Running...");
         }
-    });
-
-    line = anime.timeline({
-        autoplay: false
-    }).add({
-        targets: '#loading',
-        opacity: 1,
-        duration: 1000
-    }).add({
-        targets: '#logo-letter-border',
-        strokeDashoffset: [anime.setDashoffset, 0],
-        duration: 500,
-        easing: 'easeInOutSine',
-
-    }).add({
-        targets: '#logo-border',
-        strokeDashoffset: [anime.setDashoffset, 0],
-        duration: 500,
-        easing: 'easeInOutSine',
-    }).add({
-        targets: ['#logo-letter-border', '#logo-border'],
-        duration: 500,
-        easing: 'easeInCubic',
-        update: function(anim) {
-            document.getElementById('logo-letter-border').setAttribute('fill-opacity', (anim.progress - 80) / 20);
-            document.getElementById('logo-border').setAttribute('fill-opacity', (anim.progress - 80) / 20);
-        },
-        complete: function (anim) {
+    },
+    complete: function () {
+        if (isLoading) {
             logoRotate.restart();
         }
-    })
+    }
+});
 
-    logoRotate.finished.then(finishHideLoading);
+line = anime.timeline({
+    autoplay: false
+}).add({
+    targets: '#loading',
+    opacity: 1,
+    duration: 1000
+}).add({
+    targets: '#logo-letter-border',
+    strokeDashoffset: [anime.setDashoffset, 0],
+    duration: 500,
+    easing: 'easeInOutSine',
 
-
-    document.getElementById('closeBtn').addEventListener('click', function () {
-        remote.getCurrentWindow().close();
-    });
-
-    document.getElementById('maximizeBtn').addEventListener('click', function () {
-        if (maximized == 0) {
-            remote.getCurrentWindow().maximize();
-        } else {
-            remote.getCurrentWindow().unmaximize();
+}).add({
+    targets: '#logo-border',
+    strokeDashoffset: [anime.setDashoffset, 0],
+    duration: 500,
+    easing: 'easeInOutSine',
+}).add({
+    targets: ['#logo-letter-border', '#logo-border'],
+    duration: 500,
+    easing: 'easeInCubic',
+    update: function (anim) {
+        document.getElementById('logo-letter-border').setAttribute('fill-opacity', (anim.progress - 80) / 20);
+        document.getElementById('logo-border').setAttribute('fill-opacity', (anim.progress - 80) / 20);
+    },
+    complete: function (anim) {
+        if (isLoading) {
+            logoRotate.restart();
         }
-    });
+    }
+})
 
-    document.getElementById('minimizeBtn').addEventListener('click', function () {
-        remote.getCurrentWindow().minimize();
-    });
+
+document.getElementById('closeBtn').addEventListener('click', function () {
+    remote.getCurrentWindow().close();
+});
+
+document.getElementById('maximizeBtn').addEventListener('click', function () {
+    if (maximized == 0) {
+        remote.getCurrentWindow().maximize();
+    } else {
+        remote.getCurrentWindow().unmaximize();
+    }
+});
+
+document.getElementById('minimizeBtn').addEventListener('click', function () {
+    remote.getCurrentWindow().minimize();
+});
 
 remote.getCurrentWindow().on('maximize', () => {
     maximized = 1;
@@ -139,54 +144,79 @@ function showLoading() {
 
 function hideLoading() {
     isLoading = false;
-
-    console.log('Loading Ended!');
+    logoRotate.finished.then(finishHideLoading);
 }
 
 function finishHideLoading() {
+    console.log("Animating Out...")
     var fadeOut = anime.timeline({
         autoplay: false
     });
 
     fadeOut.add({
         targets: '.loadingCircle path',
-        update: function(anim) {
-            document.getElementById('logo-letter-border').setAttribute('fill-opacity', 1 - anim.progress);
-            document.getElementById('logo-border').setAttribute('fill-opacity', 1 - anim.progress);
-        },
-        duration: '500'
+        fillOpacity: [1, 0],
+        easing: "linear",
+        duration: '500',
+        complete: function () {
+            line.play();
+            line.reverse();
+        }
     });
-
-
     fadeOut.play();
 }
 
-    // create an array with nodes
-    var nodes = new vis.DataSet([
-        {id: 1, label: 'Node 1'},
-        {id: 2, label: 'Node 2'},
-        {id: 3, label: 'Node 3'},
-        {id: 4, label: 'Node 4'},
-        {id: 5, label: 'Node 5'}
-    ]);
+// create an array with nodes
+var nodes = new vis.DataSet([{
+        id: 1,
+        label: 'Node 1'
+    },
+    {
+        id: 2,
+        label: 'Node 2'
+    },
+    {
+        id: 3,
+        label: 'Node 3'
+    },
+    {
+        id: 4,
+        label: 'Node 4'
+    },
+    {
+        id: 5,
+        label: 'Node 5'
+    }
+]);
 
-    // create an array with edges
-    var edges = new vis.DataSet([
-        {from: 1, to: 3},
-        {from: 1, to: 2},
-        {from: 2, to: 4},
-        {from: 2, to: 5}
-    ]);
+// create an array with edges
+var edges = new vis.DataSet([{
+        from: 1,
+        to: 3
+    },
+    {
+        from: 1,
+        to: 2
+    },
+    {
+        from: 2,
+        to: 4
+    },
+    {
+        from: 2,
+        to: 5
+    }
+]);
 
-    // create a network
-    var container = document.getElementById('graph-view');
+// create a network
+var container = document.getElementById('graph-view');
 
-    // provide the data in the vis format
-    var data = {
-        nodes: nodes,
-        edges: edges
-    };
-    var options = {};
+// provide the data in the vis format
+var data = {
+    nodes: nodes,
+    edges: edges
+};
+var options = {};
 
-    // initialize your network!
-    var network = new vis.Network(container, data, options);
+// initialize your network!
+var network = new vis.Network(container, data, options);
