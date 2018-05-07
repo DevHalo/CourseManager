@@ -16,12 +16,13 @@ function createWindow() {
     height: 768,
     frame: false,
     minHeight: 720,
-    minWidth: 1280
+    minWidth: 1280,
+    icon: 'file://${__dirname}/dist/assets/logo.png'
   })
 
   // and load the index.html of the app.
   win.loadURL(url.format({
-    pathname: path.join(__dirname, 'index.html'),
+    pathname: path.join(__dirname, 'dist/index.html'),
     protocol: 'file:',
     slashes: true
   }))
