@@ -55,9 +55,8 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default function Titlebar() {
+export default function Titlebar(props) {
     const classes = useStyles();
-    const sideBar = useRef();
 
     const [value, setValue] = React.useState(0);
 
@@ -65,20 +64,16 @@ export default function Titlebar() {
         setValue(newValue);
     }
 
-    function openDrawer() {
-        sideBar.current.toggleDrawer('left', true);
-    }
-
     return (
         <div className={classes.root}>
             <AppBar position="static">
                 <Toolbar>
                     <IconButton edge="start" className={classes.menuButton} color="inherit"
-                        onClick={openDrawer}
+                        onClick={props.toggleSideBar}
                     >
                         <MenuIcon/>
+                        <Typography variant="h6" className={classes.title}> {props.university} </Typography>
                     </IconButton>
-                    <Typography variant="h6" className={classes.title}> York University </Typography>
                     <Tabs value={value} onChange={handleChange}>
                         <Tab label="Item One" {...a11yProps(0)} />
                         <Tab label="Item Two" {...a11yProps(1)} />
@@ -87,7 +82,6 @@ export default function Titlebar() {
                     <Button color="inherit">Settings</Button>
                 </Toolbar>
             </AppBar>
-            <Sidebar ref={sideBar}/>
             <TabPanel value={value} index={0}>
                 Item One
             </TabPanel>
