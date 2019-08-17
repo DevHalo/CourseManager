@@ -1,10 +1,15 @@
 {
-  "extends": "eslint-config-airbnb",
-  "rules": {
+    "extends": "eslint-config-airbnb",
+    "rules": {
     "import/extensions": 0,
     "import/no-extraneous-dependencies": 0,
     "import/no-unresolved": [2, { "ignore": ["electron"] }],
     "linebreak-style": 0,
-    "react/prefer-stateless-function": 0
+    "react/prefer-stateless-function": 0,
+    "indent": ["error", 4],
+    "react/jsx-indent": ["error", 4],
+    "react/jsx-indent-props": ["error", 4],
+    "no-tabs": 0,
+    "no-console": 0
   }
 }
