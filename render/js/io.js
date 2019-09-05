@@ -1,25 +1,43 @@
-const fs = require('fs');
+import Store from 'electron-store';
 
-// Attempts to read the user data from disk
-// If read is successful, return json object
-// If read fails, return null
-export function readData() {
-    try {
-        console.log("test");
-        obj = JSON.parse(fs.readFileSync('userData.json'));
-        return obj;
-    } catch (err) { console.log(`Failed to read file: ${err}`); }
+// The default schema if there is no userdata
+const schema = {
+    resX: {
+        type: 'integer',
+        default: 1366,
+    },
+    resY: {
+        type: 'integer',
+        default: 768,
+    },
+    firstStart: {
+        type: 'boolean',
+        default: true,
+    },
+    university: {
+        type: 'string',
+        default: 'York University',
+    },
+};
 
-    return null;
-}
+let store;
 
-// Attempts to save user data to disk
-// If save is successful, return true, false otherwise
-export function saveData(data) {
-    try {
-        fs.writeFileSync('userData.json', JSON.stringify(data));
-        return true;
-    } catch (err) { console.log(`Failed to save file: ${err}`); }
+const IO = {
+    LoadUserData() {
+        console.log('Loading User Settings...');
+        try {
+            store = new Store({ schema });
+        } catch (e) {
+            console.log(`ERROR: ${e}`);
+        }
+        console.log('Done.');
+        return store;
+    },
 
-    return false;
-}
+    SaveUserData() {
+
+
+    },
+};
+
+export default IO;

@@ -1,26 +1,22 @@
 import { app, BrowserWindow } from 'electron';
-let mainWindow;
+import pkg from '../package.json';
 
-const isDevMode = process.env.NODE_ENV !== 'production'
+let mainWindow;
+const isDevMode = process.env.NODE_ENV !== 'production';
 
 const createWindow = () => {
+    mainWindow = new BrowserWindow({
+        width: 1366,
+        height: 768,
+        webPreferences: { nodeIntegration: true },
+    });
 
-  mainWindow = new BrowserWindow({
-    width: 1366,
-    height: 768,
-    webPreferences: { nodeIntegration: true }
-  });
+    mainWindow.setTitle(`${pkg.productName} - ${pkg.version}`);
 
-  let name = require('../package.json').productName;
-  let version = require('../package.json').version;
-  mainWindow.setTitle(name + " - " + version);
+    if (isDevMode) { mainWindow.webContents.openDevTools(); }
 
-  if (isDevMode) { mainWindow.webContents.openDevTools(); }
-  mainWindow.loadFile(`build/render/index.html`);
-
-
-
-  mainWindow.on('closed', () => { mainWindow = null; });
+    mainWindow.loadFile('build/render/index.html');
+    mainWindow.on('closed', () => { mainWindow = null; });
 };
 
 app.on('ready', createWindow);
