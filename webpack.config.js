@@ -7,7 +7,7 @@ const devMode = process.env.NODE_ENV === 'development';
 
 module.exports = [
     {
-        mode: 'production',
+        mode: devMode ? 'development' : 'production',
         target: 'electron-main',
         entry: './main/index.js',
         output: {
@@ -22,7 +22,8 @@ module.exports = [
         },
     },
     {
-        mode: 'production',
+        mode: devMode ? 'development' : 'production',
+        devtool: devMode ? false : 'source-map',
         target: 'electron-renderer',
         entry: './render/index.jsx',
         output: {

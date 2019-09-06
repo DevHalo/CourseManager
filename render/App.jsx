@@ -10,7 +10,7 @@ import Sidebar from './components/Sidebar';
 import IO from './js/io';
 
 const useStyles = makeStyles(theme => ({
-    root: { padding: theme.spacing(3, 2), },
+    root: { padding: theme.spacing(3, 2) },
 }));
 
 export default function App() {
