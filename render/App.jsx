@@ -28,7 +28,10 @@ export default function App() {
 
     return (
         <div className="container">
-            <Titlebar openSidebar={openSidebar} university={userSettings} />
+            <Titlebar
+                openSidebar={openSidebar}
+                university={userSettings ? userSettings.get('university') : 'Loading...'}
+            />
             <Sidebar closeSidebar={closeSidebar} show={sideBar} />
             <Paper className={classes.root}>
                 <p>yo</p>
