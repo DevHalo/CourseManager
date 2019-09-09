@@ -18,6 +18,10 @@ const schema = {
         type: 'string',
         default: 'York University',
     },
+    startMaximized: {
+        type: 'boolean',
+        default: true,
+    },
 };
 
 let store;

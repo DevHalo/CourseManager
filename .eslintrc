@@ -10,7 +10,8 @@
         "react/jsx-indent": [ "error", 4 ],
         "react/jsx-indent-props": [ "error", 4 ],
         "no-tabs": 0,
-        "no-console": 0
+        "no-console": 0,
+        "no-unused-expressions": ["error", { "allowTernary": true }]
     },
     "env": { "browser": true }
 }

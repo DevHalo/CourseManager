@@ -15,6 +15,11 @@ import SchoolIcon from '@material-ui/icons/School';
 const useStyles = makeStyles({
     list: { width: 250 },
     fullList: { width: 'auto' },
+    root: { '& .MuiBackdrop-root': { top: '24px' } },
+    paper: {
+        height: 'calc(100% - 24px)',
+        top: '24px',
+    },
 });
 
 const Sidebar = (props) => {
@@ -32,20 +37,24 @@ const Sidebar = (props) => {
             role="presentation"
             onClick={props.closeSidebar}
             onKeyDown={props.closeSidebar}
-            >
+        >
             <List>
-                {sideBarIcons.map((option) => (
-                <ListItem button key={option.name}>
-                    <ListItemIcon>{option.icon}</ListItemIcon>
-                    <ListItemText primary={option.name} />
-                </ListItem>
+                {sideBarIcons.map(option => (
+                    <ListItem button key={option.name}>
+                        <ListItemIcon>{option.icon}</ListItemIcon>
+                        <ListItemText primary={option.name} />
+                    </ListItem>
                 ))}
             </List>
         </div>
     );
 
     return (
-        <Drawer open={props.show} onClose={props.closeSidebar}>
+        <Drawer
+            classes={{ root: classes.root, paper: classes.paper }}
+            open={props.show}
+            onClose={props.closeSidebar}
+        >
             {sideList()}
         </Drawer>
     );
