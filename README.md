@@ -3,8 +3,9 @@ A small project I wanted to work on.
 A native desktop application that allows the user to view course dependencies for Computer Science at York University.
 
 Written using Electron as well as the following libraries:
-- [anime.js](https://github.com/juliangarnier/anime) (For animations and to make it look cool)
-- [vis.js](https://github.com/almende/vis) (For data visualization)
+- React
+- Material UI
+- Webpack
 
 #### Planned release features:
 - Allow user to save their grades earned in a particular course, calculating GPA avg. etc
@@ -13,10 +14,16 @@ Written using Electron as well as the following libraries:
 #### Other features I plan on working on:
 - Scrapes the YorkU course website for updated courses (Might be moved to an AWS server instead)
 
-#### Deployment
+#### Build
 
 ~~~~
-npm run electron-build
+npm run build
+~~~~
+
+### Dev
+
+~~~~
+npm run start
 ~~~~
 
 Currently tested on Windows 10. No plans for Mac or Linux yet.
